@@ -1,0 +1,660 @@
+{
+ "OffType": "STATEWIDE OFFICES",
+ "OffTypeID": 511,
+ "Races": [
+  {
+   "id": 3579,
+   "N": "GOVERNOR",
+   "Candidates": [
+    {
+     "ID": 39537,
+     "N": "GREG ABBOTT (I)",
+     "P": "REP",
+     "V": 4524527,
+     "PE": 45.67,
+     "C": "#E30202",
+     "O": 1,
+     "EV": 3421415,
+     "LN": "ABBOTT",
+     "FN": "GREG"
+    },
+    {
+     "ID": 33621,
+     "N": "PAT DIXON",
+     "P": "LIB",
+     "V": 148078,
+     "PE": 1.49,
+     "C": "#e0b30e",
+     "O": 3,
+     "EV": 95791,
+     "LN": "DIXON",
+     "FN": "PAT"
+    },
+    {
+     "ID": 44433,
+     "N": "EDWARD EARL GILES",
+     "P": "W",
+     "V": 449,
+     "PE": 0.0,
+     "C": "#e0b30e",
+     "O": 4,
+     "EV": 311,
+     "LN": "GILES",
+     "FN": "EDWARD EARL"
+    },
+    {
+     "ID": 41284,
+     "N": "GINA HINOJOSA",
+     "P": "DEM",
+     "V": 5230789,
+     "PE": 52.8,
+     "C": "#007BBD",
+     "O": 2,
+     "EV": 4246708,
+     "LN": "HINOJOSA",
+     "FN": "GINA"
+    },
+    {
+     "ID": 43373,
+     "N": "JENN MACK",
+     "P": "W",
+     "V": 2198,
+     "PE": 0.02,
+     "C": "#e0b30e",
+     "O": 5,
+     "EV": 1522,
+     "LN": "MACK",
+     "FN": "JENN"
+    },
+    {
+     "ID": 44429,
+     "N": "JINGHPAW MAJOISHINGRA",
+     "P": "W",
+     "V": 74,
+     "PE": 0.0,
+     "C": "#e0b30e",
+     "O": 6,
+     "EV": 54,
+     "LN": "MAJOISHINGRA",
+     "FN": "JINGHPAW"
+    },
+    {
+     "ID": 44431,
+     "N": "MIKE MILLER",
+     "P": "W",
+     "V": 1266,
+     "PE": 0.01,
+     "C": "#e0b30e",
+     "O": 7,
+     "EV": 830,
+     "LN": "MILLER",
+     "FN": "MIKE"
+    }
+   ],
+   "T": 9907381,
+   "O": 10,
+   "SO": 1
+  },
+  {
+   "id": 4714,
+   "N": "LIEUTENANT GOVERNOR",
+   "Candidates": [
+    {
+     "ID": 33589,
+     "N": "ANTHONY CRISTO",
+     "P": "LIB",
+     "V": 170444,
+     "PE": 1.73,
+     "C": "#e0b30e",
+     "O": 3,
+     "EV": 112235,
+     "LN": "CRISTO",
+     "FN": "ANTHONY"
+    },
+    {
+     "ID": 43273,
+     "N": "ARTURO ESPINOSA",
+     "P": "W",
+     "V": 571,
+     "PE": 0.01,
+     "C": "#e0b30e",
+     "O": 5,
+     "EV": 419,
+     "LN": "ESPINOSA",
+     "FN": "ARTURO"
+    },
+    {
+     "ID": 42610,
+     "N": "VIKKI GOODWIN",
+     "P": "DEM",
+     "V": 5083581,
+     "PE": 51.73,
+     "C": "#007BBD",
+     "O": 2,
+     "EV": 4146713,
+     "LN": "GOODWIN",
+     "FN": "VIKKI"
+    },
+    {
+     "ID": 42222,
+     "N": "KEVIN MCCORMICK",
+     "P": "GRE",
+     "V": 88033,
+     "PE": 0.9,
+     "C": "#e0b30e",
+     "O": 4,
+     "EV": 59262,
+     "LN": "MCCORMICK",
+     "FN": "KEVIN"
+    },
+    {
+     "ID": 39538,
+     "N": "DAN PATRICK (I)",
+     "P": "REP",
+     "V": 4484652,
+     "PE": 45.63,
+     "C": "#E30202",
+     "O": 1,
+     "EV": 3395156,
+     "LN": "PATRICK",
+     "FN": "DAN"
+    },
+    {
+     "ID": 44427,
+     "N": "STEPHEN SAMUELSON",
+     "P": "W",
+     "V": 769,
+     "PE": 0.01,
+     "C": "#e0b30e",
+     "O": 6,
+     "EV": 559,
+     "LN": "SAMUELSON",
+     "FN": "STEPHEN"
+    }
+   ],
+   "T": 9828050,
+   "O": 11,
+   "SO": 1
+  },
+  {
+   "id": 3,
+   "N": "ATTORNEY GENERAL",
+   "Candidates": [
+    {
+     "ID": 42611,
+     "N": "NATHAN JOHNSON",
+     "P": "DEM",
+     "V": 5133629,
+     "PE": 52.38,
+     "C": "#007BBD",
+     "O": 2,
+     "EV": 4181048,
+     "LN": "JOHNSON",
+     "FN": "NATHAN"
+    },
+    {
+     "ID": 42430,
+     "N": "MAYES MIDDLETON",
+     "P": "REP",
+     "V": 4502442,
+     "PE": 45.94,
+     "C": "#E30202",
+     "O": 1,
+     "EV": 3404254,
+     "LN": "MIDDLETON",
+     "FN": "MAYES"
+    },
+    {
+     "ID": 33631,
+     "N": "TOM OXFORD",
+     "P": "LIB",
+     "V": 165550,
+     "PE": 1.69,
+     "C": "#e0b30e",
+     "O": 3,
+     "EV": 107939,
+     "LN": "OXFORD",
+     "FN": "TOM"
+    }
+   ],
+   "T": 9801621,
+   "O": 12,
+   "SO": 1
+  },
+  {
+   "id": 21,
+   "N": "COMPTROLLER OF PUBLIC ACCOUNTS",
+   "Candidates": [
+    {
+     "ID": 33572,
+     "N": "V. ALONZO ECHAVARRIA-GARZA",
+     "P": "LIB",
+     "V": 185187,
+     "PE": 1.89,
+     "C": "#e0b30e",
+     "O": 3,
+     "EV": 123317,
+     "LN": "ECHAVARRIA-GARZA",
+     "FN": "V. ALONZO"
+    },
+    {
+     "ID": 41285,
+     "N": "SARAH ECKHARDT",
+     "P": "DEM",
+     "V": 5014496,
+     "PE": 51.3,
+     "C": "#007BBD",
+     "O": 2,
+     "EV": 4092319,
+     "LN": "ECKHARDT",
+     "FN": "SARAH"
+    },
+    {
+     "ID": 42255,
+     "N": "SHEHLA FAIZI",
+     "P": "GRE",
+     "V": 63817,
+     "PE": 0.65,
+     "C": "#e0b30e",
+     "O": 4,
+     "EV": 45572,
+     "LN": "FAIZI",
+     "FN": "SHEHLA"
+    },
+    {
+     "ID": 39539,
+     "N": "DON HUFFINES",
+     "P": "REP",
+     "V": 4511185,
+     "PE": 46.15,
+     "C": "#E30202",
+     "O": 1,
+     "EV": 3414340,
+     "LN": "HUFFINES",
+     "FN": "DON"
+    }
+   ],
+   "T": 9774685,
+   "O": 13,
+   "SO": 1
+  },
+  {
+   "id": 20,
+   "N": "COMMISSIONER OF THE GENERAL LAND OFFICE",
+   "Candidates": [
+    {
+     "ID": 39540,
+     "N": "DAWN BUCKINGHAM (I)",
+     "P": "REP",
+     "V": 4576883,
+     "PE": 46.96,
+     "C": "#E30202",
+     "O": 1,
+     "EV": 3472163,
+     "LN": "BUCKINGHAM",
+     "FN": "DAWN"
+    },
+    {
+     "ID": 41286,
+     "N": "BENJAMIN FLORES",
+     "P": "DEM",
+     "V": 5014714,
+     "PE": 51.45,
+     "C": "#007BBD",
+     "O": 2,
+     "EV": 4079765,
+     "LN": "FLORES",
+     "FN": "BENJAMIN"
+    },
+    {
+     "ID": 33617,
+     "N": "NEILL SNIDER",
+     "P": "LIB",
+     "V": 155408,
+     "PE": 1.59,
+     "C": "#e0b30e",
+     "O": 3,
+     "EV": 102081,
+     "LN": "SNIDER",
+     "FN": "NEILL"
+    }
+   ],
+   "T": 9747005,
+   "O": 15,
+   "SO": 1
+  },
+  {
+   "id": 19,
+   "N": "COMMISSIONER OF AGRICULTURE",
+   "Candidates": [
+    {
+     "ID": 33597,
+     "N": "AUSTIN R. KELLY",
+     "P": "LIB",
+     "V": 199024,
+     "PE": 2.05,
+     "C": "#e0b30e",
+     "O": 3,
+     "EV": 132186,
+     "LN": "KELLY",
+     "FN": "AUSTIN R."
+    },
+    {
+     "ID": 39541,
+     "N": "NATE SHEETS",
+     "P": "REP",
+     "V": 4538736,
+     "PE": 46.65,
+     "C": "#E30202",
+     "O": 1,
+     "EV": 3443079,
+     "LN": "SHEETS",
+     "FN": "NATE"
+    },
+    {
+     "ID": 41287,
+     "N": "CLAYTON TUCKER",
+     "P": "DEM",
+     "V": 4991896,
+     "PE": 51.31,
+     "C": "#007BBD",
+     "O": 2,
+     "EV": 4065268,
+     "LN": "TUCKER",
+     "FN": "CLAYTON"
+    }
+   ],
+   "T": 9729656,
+   "O": 16,
+   "SO": 1
+  },
+  {
+   "id": 4843,
+   "N": "RAILROAD COMMISSIONER ",
+   "Candidates": [
+    {
+     "ID": 33593,
+     "N": "ARTHUR DIBIANCA",
+     "P": "LIB",
+     "V": 187984,
+     "PE": 1.93,
+     "C": "#e0b30e",
+     "O": 3,
+     "EV": 125951,
+     "LN": "DIBIANCA",
+     "FN": "ARTHUR"
+    },
+    {
+     "ID": 42431,
+     "N": "BO FRENCH",
+     "P": "REP",
+     "V": 4426141,
+     "PE": 45.55,
+     "C": "#E30202",
+     "O": 1,
+     "EV": 3345720,
+     "LN": "FRENCH",
+     "FN": "BO"
+    },
+    {
+     "ID": 41288,
+     "N": "JON ROSENTHAL",
+     "P": "DEM",
+     "V": 5103177,
+     "PE": 52.52,
+     "C": "#007BBD",
+     "O": 2,
+     "EV": 4161511,
+     "LN": "ROSENTHAL",
+     "FN": "JON"
+    }
+   ],
+   "T": 9717302,
+   "O": 17,
+   "SO": 1
+  },
+  {
+   "id": 18,
+   "N": "CHIEF JUSTICE, SUPREME COURT",
+   "Candidates": [
+    {
+     "ID": 39542,
+     "N": "JIMMY BLACKLOCK (I)",
+     "P": "REP",
+     "V": 4625886,
+     "PE": 47.55,
+     "C": "#E30202",
+     "O": 1,
+     "EV": 3495807,
+     "LN": "BLACKLOCK",
+     "FN": "JIMMY"
+    },
+    {
+     "ID": 41289,
+     "N": "MAGGIE ELLIS",
+     "P": "DEM",
+     "V": 5102288,
+     "PE": 52.45,
+     "C": "#007BBD",
+     "O": 2,
+     "EV": 4146433,
+     "LN": "ELLIS",
+     "FN": "MAGGIE"
+    }
+   ],
+   "T": 9728174,
+   "O": 30,
+   "SO": 1
+  },
+  {
+   "id": 4706,
+   "N": "JUSTICE, SUPREME COURT, PLACE 2 - UNEXPIRED TERM",
+   "Candidates": [
+    {
+     "ID": 41290,
+     "N": "CHARI KELLY",
+     "P": "DEM",
+     "V": 5068047,
+     "PE": 52.25,
+     "C": "#007BBD",
+     "O": 2,
+     "EV": 4126409,
+     "LN": "KELLY",
+     "FN": "CHARI"
+    },
+    {
+     "ID": 39543,
+     "N": "JAMES P. SULLIVAN (I)",
+     "P": "REP",
+     "V": 4631182,
+     "PE": 47.75,
+     "C": "#E30202",
+     "O": 1,
+     "EV": 3493645,
+     "LN": "SULLIVAN",
+     "FN": "JAMES P."
+    }
+   ],
+   "T": 9699229,
+   "O": 31,
+   "SO": 2
+  },
+  {
+   "id": 4711,
+   "N": "JUSTICE, SUPREME COURT, PLACE 7",
+   "Candidates": [
+    {
+     "ID": 41291,
+     "N": "KRISTEN HAWKINS",
+     "P": "DEM",
+     "V": 5112073,
+     "PE": 52.78,
+     "C": "#007BBD",
+     "O": 2,
+     "EV": 4154487,
+     "LN": "HAWKINS",
+     "FN": "KRISTEN"
+    },
+    {
+     "ID": 39544,
+     "N": "KYLE HAWKINS (I)",
+     "P": "REP",
+     "V": 4572758,
+     "PE": 47.22,
+     "C": "#E30202",
+     "O": 1,
+     "EV": 3455654,
+     "LN": "HAWKINS",
+     "FN": "KYLE"
+    }
+   ],
+   "T": 9684831,
+   "O": 31,
+   "SO": 7
+  },
+  {
+   "id": 4712,
+   "N": "JUSTICE, SUPREME COURT, PLACE 8",
+   "Candidates": [
+    {
+     "ID": 39545,
+     "N": "BRETT BUSBY (I)",
+     "P": "REP",
+     "V": 4643375,
+     "PE": 47.98,
+     "C": "#E30202",
+     "O": 1,
+     "EV": 3514411,
+     "LN": "BUSBY",
+     "FN": "BRETT"
+    },
+    {
+     "ID": 41292,
+     "N": "GISELA D. TRIANA",
+     "P": "DEM",
+     "V": 5033586,
+     "PE": 52.02,
+     "C": "#007BBD",
+     "O": 2,
+     "EV": 4090442,
+     "LN": "TRIANA",
+     "FN": "GISELA D."
+    }
+   ],
+   "T": 9676961,
+   "O": 31,
+   "SO": 8
+  },
+  {
+   "id": 3819,
+   "N": "JUDGE, COURT OF CRIMINAL APPEALS, PLACE 3",
+   "Candidates": [
+    {
+     "ID": 41293,
+     "N": "OKEY ANYIAM",
+     "P": "DEM",
+     "V": 4839230,
+     "PE": 50.03,
+     "C": "#007BBD",
+     "O": 2,
+     "EV": 3955398,
+     "LN": "ANYIAM",
+     "FN": "OKEY"
+    },
+    {
+     "ID": 33636,
+     "N": "MARK ASH",
+     "P": "LIB",
+     "V": 231048,
+     "PE": 2.39,
+     "C": "#e0b30e",
+     "O": 3,
+     "EV": 158837,
+     "LN": "ASH",
+     "FN": "MARK"
+    },
+    {
+     "ID": 42432,
+     "N": "THOMAS SMITH",
+     "P": "REP",
+     "V": 4601878,
+     "PE": 47.58,
+     "C": "#E30202",
+     "O": 1,
+     "EV": 3485444,
+     "LN": "SMITH",
+     "FN": "THOMAS"
+    }
+   ],
+   "T": 9672156,
+   "O": 41,
+   "SO": 3
+  },
+  {
+   "id": 3820,
+   "N": "JUDGE, COURT OF CRIMINAL APPEALS, PLACE 4",
+   "Candidates": [
+    {
+     "ID": 41294,
+     "N": "AUDRA RILEY",
+     "P": "DEM",
+     "V": 4996898,
+     "PE": 51.75,
+     "C": "#007BBD",
+     "O": 2,
+     "EV": 4063229,
+     "LN": "RILEY",
+     "FN": "AUDRA"
+    },
+    {
+     "ID": 39546,
+     "N": "KEVIN PATRICK YEARY (I)",
+     "P": "REP",
+     "V": 4659299,
+     "PE": 48.25,
+     "C": "#E30202",
+     "O": 1,
+     "EV": 3526355,
+     "LN": "YEARY",
+     "FN": "KEVIN PATRICK"
+    }
+   ],
+   "T": 9656197,
+   "O": 41,
+   "SO": 4
+  },
+  {
+   "id": 3823,
+   "N": "JUDGE, COURT OF CRIMINAL APPEALS, PLACE 9",
+   "Candidates": [
+    {
+     "ID": 39547,
+     "N": "JOHN MESSINGER",
+     "P": "REP",
+     "V": 4602681,
+     "PE": 47.72,
+     "C": "#E30202",
+     "O": 1,
+     "EV": 3478839,
+     "LN": "MESSINGER",
+     "FN": "JOHN"
+    },
+    {
+     "ID": 41295,
+     "N": "HOLLY TAYLOR",
+     "P": "DEM",
+     "V": 5043094,
+     "PE": 52.28,
+     "C": "#007BBD",
+     "O": 2,
+     "EV": 4103198,
+     "LN": "TAYLOR",
+     "FN": "HOLLY"
+    }
+   ],
+   "T": 9645775,
+   "O": 41,
+   "SO": 9
+  }
+ ]
+}
