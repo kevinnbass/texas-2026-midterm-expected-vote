@@ -59,8 +59,12 @@ full-resolution file).
 
 `src/build_page.py` builds a standalone web page that presents both figures, with a full-screen viewer, every race's
 numbers by year and expectation, the method and the sources. Every number on it is computed from `data/derived/`, and
-`./build.sh` writes it to `build/site/index.html`. `site/test_page.mjs` clicks through the page in headless Chromium
-and checks it.
+`./build.sh` writes it to `build/site/`:
+- `index.html` is a self-contained page.
+- `artifact.html` is the same page in the form claude.ai artifacts take, with the host supplying the document wrapper.
+
+The page is published at https://claude.ai/artifact/49rXF9aoDH3va3ccv23MvF. `site/test_page.mjs` clicks through it in
+headless Chromium, in light and dark themes and at phone width, and checks it.
 
 ## What the figures show
 
