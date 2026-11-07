@@ -22,4 +22,6 @@ $PY src/expected_figs.py "$OUT/derived/texas_midterm_vs_presidential.csv" \
 $PY src/splice.py "$OUT/derived/texas_midterm_vs_presidential.csv" "$OUT/figures/panels" "$OUT/figures"
 $PY src/results_table.py "$OUT/derived/texas_midterm_vs_presidential.csv" \
     "$OUT/derived/texas_statewide_2018_2022_2026.csv" > "$OUT/RESULTS.md"
+$PY src/build_page.py "$OUT/derived/texas_midterm_vs_presidential.csv" \
+    "$OUT/derived/texas_statewide_2018_2022_2026.csv" "$OUT/figures" "$OUT/site" > /dev/null
 $PY src/verify.py "$OUT" $STRICT

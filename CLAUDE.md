@@ -44,3 +44,4 @@ sha256sum -c data/SHA256SUMS        # integrity of committed files
 - `figures/panels/`: the four single figures.
 - `figures/`: the two combined images.
 - `src/`: one script per step, in the order `build.sh` runs them.
+- `site/`: the web page's template (`template.html`, filled by `src/build_page.py`) and its browser test (`test_page.mjs`). The page is published as a claude.ai artifact with the figures beside it. After changing the page, run the test and look at its screenshots before publishing.

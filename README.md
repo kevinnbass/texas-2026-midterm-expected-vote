@@ -34,7 +34,33 @@ nationally in House races, the president's party usually loses more of its presi
   the president's party.
 - **Right:** as in figure 1, with the president's-party expectation as the shadow bar.
 
-The four single figures that make up the two images are in `figures/panels/`.
+### The four halves at full size
+
+Each combined image is two figures side by side. Here they are on their own, at full size (click to open the
+full-resolution file).
+
+**Figure 1, left: each party's midterm vote vs. its presidential vote two years earlier, 1994–2026**
+
+![Figure 1, left](figures/panels/texas_midterm_vs_presidential_history.png)
+
+**Figure 1, right: actual vs. expected votes, 2018–2026**
+
+![Figure 1, right](figures/panels/texas_statewide_expected_2018_2026.png)
+
+**Figure 2, left: actual and expected change, adjusted for the president's party, 1994–2026**
+
+![Figure 2, left](figures/panels/texas_midterm_vs_presidential_history_incumbency.png)
+
+**Figure 2, right: actual vs. expected votes adjusted for the president's party, 2018–2026**
+
+![Figure 2, right](figures/panels/texas_statewide_expected_incumbency_2018_2026.png)
+
+### Web page
+
+`src/build_page.py` builds a standalone web page that presents both figures, with a full-screen viewer, every race's
+numbers by year and expectation, the method and the sources. Every number on it is computed from `data/derived/`, and
+`./build.sh` writes it to `build/site/index.html`. `site/test_page.mjs` clicks through the page in headless Chromium
+and checks it.
 
 ## What the figures show
 

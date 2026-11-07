@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Texas 2026: Actual vs. Expected Votes</title>
+<meta name="description" content="Every 2026 Texas statewide race compared with the vote each party would have received under the 1994–2022 midterm pattern.">
+<style>
+:root{
+  --bg:#f3f2ee; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#7a7974; --rule:#e4e3df; --axis:#9a9994;
+  --rep:#e34948; --dem:#2a78d6; --rep-l:#f6c3c2; --dem-l:#b7d3f6; --seg:#e9e8e3;
+  --text:760px; --wide:1480px;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:Inter,"Inter var","Noto Sans",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--ink);text-decoration-color:var(--axis);text-underline-offset:3px}
+a:hover{text-decoration-color:var(--ink)}
+.wrap{max-width:var(--wide);margin:0 auto;padding:0 28px}
+.text{max-width:var(--text)}
+.num{font-variant-numeric:tabular-nums}
+.sw{display:inline-block;width:.72em;height:.72em;border-radius:2px;vertical-align:baseline;margin-right:.4em;position:relative;top:.02em}
+.sw.r{background:var(--rep)} .sw.d{background:var(--dem)}
+
+/* hero */
+header.hero{padding:72px 0 28px}
+.kicker{font-size:13px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:0 0 18px}
+h1{font-size:clamp(34px,4.4vw,58px);line-height:1.06;letter-spacing:-.022em;font-weight:760;margin:0 0 22px;max-width:16.5em}
+.dek{font-size:clamp(18px,1.6vw,22px);line-height:1.5;color:var(--ink2);margin:0;max-width:36em}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:40px}
+.tile{background:var(--surface);border:1px solid var(--rule);border-radius:14px;padding:18px 20px 18px}
+.tile .label{font-size:13.5px;color:var(--ink2);font-weight:600;line-height:1.35;margin:0 0 10px}
+.tile .big{font-size:clamp(26px,2.3vw,34px);font-weight:740;letter-spacing:-.015em;line-height:1.1;margin:0}
+.tile .sub{font-size:13.5px;color:var(--muted);line-height:1.45;margin:10px 0 0}
+.tile .pair{display:flex;flex-direction:column;gap:4px}
+.tile .pair .big{font-size:clamp(22px,1.9vw,28px)}
+.tile .pair .big .sw{width:.5em;height:.5em;top:-.08em;margin-right:.45em}
+
+/* sections */
+section{padding:64px 0 8px}
+.eyebrow{font-size:13px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:650;margin:0 0 10px}
+h2{font-size:clamp(26px,2.6vw,36px);line-height:1.15;letter-spacing:-.015em;font-weight:730;margin:0 0 16px}
+h3{font-size:19px;line-height:1.3;font-weight:700;margin:30px 0 8px}
+p{margin:0 0 14px}
+.lede{font-size:19px;color:var(--ink2)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:1180px;margin-top:20px}
+.two .col{background:transparent;border-top:2px solid var(--ink);padding-top:12px}
+.two .col h3{margin-top:0}
+
+/* figure viewer */
+.viewer{background:var(--surface);border:1px solid var(--rule);border-radius:16px;padding:12px 12px 10px;
+  box-shadow:0 1px 2px rgba(0,0,0,.04),0 12px 32px -18px rgba(0,0,0,.18);margin-top:26px}
+.bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:2px 2px 12px}
+.seg{display:inline-flex;background:var(--seg);border-radius:10px;padding:3px;gap:2px;flex-wrap:wrap}
+.seg button{font:inherit;font-size:14px;font-weight:600;color:var(--ink2);background:transparent;border:0;border-radius:8px;
+  padding:7px 13px;cursor:pointer;line-height:1.2}
+.seg button[aria-selected="true"],.seg button[aria-pressed="true"]{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.seg button:focus-visible,.stage:focus-visible,.tool:focus-visible{outline:2px solid var(--dem);outline-offset:2px}
+.spacer{flex:1}
+.tool{font:inherit;font-size:14px;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--rule);border-radius:9px;
+  padding:7px 12px;text-decoration:none;cursor:pointer;line-height:1.2;white-space:nowrap}
+.tool:hover{border-color:var(--axis)}
+.stage{display:block;width:100%;padding:0;margin:0;border:0;background:var(--surface);cursor:zoom-in;border-radius:8px;overflow:hidden}
+.stage img{display:block;width:100%;height:auto}
+.hint{font-size:13px;color:var(--muted);margin:10px 4px 2px}
+
+/* reading guide */
+.guide{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px 22px;margin:22px 0 0;max-width:1180px}
+.key{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;line-height:1.4;color:var(--ink2)}
+.key svg{flex:none;margin-top:2px}
+.key b{color:var(--ink);font-weight:650}
+
+/* table */
+.controls{display:flex;gap:14px 22px;flex-wrap:wrap;align-items:center;margin:22px 0 14px}
+.controls .lab{font-size:13px;font-weight:650;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-right:8px}
+.tablecard{background:var(--surface);border:1px solid var(--rule);border-radius:16px;overflow-x:auto;max-width:1180px}
+table{border-collapse:collapse;width:100%;min-width:860px;font-size:14.5px}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--rule);vertical-align:middle}
+th{font-size:12.5px;font-weight:650;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+thead tr.grp th{font-size:13px;color:var(--ink);text-transform:none;letter-spacing:0;border-bottom:0;padding-bottom:0;text-align:center}
+td.race,th.race{text-align:left}
+td.race .rn{font-weight:650;color:var(--ink)}
+td.race .who{display:block;font-size:12.5px;color:var(--muted);margin-top:1px}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:#f6f5f1}
+td.v{font-variant-numeric:tabular-nums;color:var(--ink)}
+td.v.e{color:var(--ink2)}
+td.diff{width:190px}
+.dcell{display:flex;align-items:center;gap:8px;justify-content:flex-end}
+.dbar{position:relative;width:118px;height:12px;flex:none}
+.dbar .ax{position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--axis)}
+.dbar .b{position:absolute;top:1px;height:10px;border-radius:2px}
+.dbar .b.r{background:var(--rep)} .dbar .b.d{background:var(--dem)}
+.dv{font-variant-numeric:tabular-nums;font-weight:650;min-width:3.6em;text-align:right}
+.sep{border-left:1px solid var(--rule)}
+.tnote{font-size:13.5px;color:var(--muted);margin:12px 4px 0;max-width:1180px}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* method */
+.steps{counter-reset:s;list-style:none;padding:0;margin:18px 0 0}
+.steps li{counter-increment:s;position:relative;padding:0 0 16px 46px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:-1px;width:30px;height:30px;border-radius:50%;
+  background:var(--ink);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+.formula{background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--ink);border-radius:10px;padding:14px 18px;
+  margin:6px 0 4px;font-size:16px;line-height:1.5}
+.formula .op{color:var(--muted);padding:0 .35em}
+ul.plain{padding-left:20px;margin:8px 0 14px} ul.plain li{margin:0 0 7px}
+.callout{background:var(--surface);border:1px solid var(--rule);border-radius:14px;padding:18px 22px;margin-top:20px}
+.callout p:last-child{margin-bottom:0}
+
+/* sources, deeper dive, footer */
+.srcs{list-style:none;padding:0;margin:12px 0 0}
+.srcs li{padding:14px 0;border-top:1px solid var(--rule);display:grid;grid-template-columns:7.2em 1fr;gap:2px 18px}
+.srcs li:last-child{border-bottom:1px solid var(--rule)}
+.srcs .yr{font-weight:700}
+.srcs .what{min-width:0}
+.srcs code{display:block;margin-top:4px;font-size:12.5px;line-height:1.5;color:var(--ink2);overflow-wrap:anywhere}
+.deep{margin:72px 0 0;max-width:1180px;background:var(--ink);color:#f3f2ee;border-radius:20px;padding:40px 44px;
+  display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:center}
+.deep h2{color:#fff;margin-bottom:10px}
+.deep p{color:#cfcdc6;margin:0}
+.deep ul{margin:12px 0 0;padding-left:18px;color:#cfcdc6;font-size:15px}
+.deep a.go{display:block;background:#fff;color:var(--ink);text-decoration:none;border-radius:14px;padding:20px 22px;font-weight:700;font-size:17px;line-height:1.35}
+.deep a.go span{display:block;font-weight:500;font-size:13.5px;color:var(--ink2);margin-top:6px;word-break:break-all}
+.deep a.go:hover{box-shadow:0 0 0 3px rgba(255,255,255,.35)}
+footer{padding:40px 0 56px;font-size:13.5px;color:var(--muted)}
+
+/* lightbox */
+dialog.lb{position:fixed;inset:0;width:100vw;height:100vh;max-width:none;max-height:none;margin:0;padding:0;border:0;
+  background:rgba(18,18,16,.94);overflow:hidden}
+dialog.lb::backdrop{background:rgba(18,18,16,.94)}
+.lb .lbbar{position:fixed;top:12px;right:14px;left:14px;display:flex;gap:8px;align-items:center;z-index:2;pointer-events:none}
+.lb .lbbar>*{pointer-events:auto}
+.lb .cap{color:#f3f2ee;font-size:14px;font-weight:600;background:rgba(18,18,16,.86);padding:7px 12px;border-radius:9px;margin-right:auto}
+.lb .scroller{position:absolute;inset:0;overflow:auto;display:flex}
+.lb img{margin:auto;display:block;max-width:calc(100vw - 32px);max-height:calc(100vh - 72px);width:auto;height:auto;cursor:zoom-in;
+  background:var(--surface);border-radius:6px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.lb.actual .scroller{display:block}
+.lb.actual img{max-width:none;max-height:none;margin:60px 16px 16px;cursor:zoom-out}
+
+@media (max-width:1100px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.deep{grid-template-columns:1fr}}
+@media (max-width:760px){.wrap{padding:0 16px}header.hero{padding-top:44px}.two{grid-template-columns:1fr}
+  .tiles{grid-template-columns:1fr}.deep{padding:28px 22px;border-radius:16px}.viewer{padding:8px;border-radius:12px}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">Texas general election · Nov. 3, 2026 · {{asof_short}}</p>
+    <h1>Texas 2026: actual vs. expected votes in every statewide race</h1>
+    <p class="dek">Measured against the 1994–2022 midterm pattern, Democratic nominees ran
+      <b class="num">{{d_lo}} to {{d_hi}} million</b> votes above expected in all {{n26}} statewide races.
+      Republican nominees ranged from <b class="num">{{r_lo_abs}} million below</b> expected ({{r_lo_race}}) to
+      <b class="num">{{r_hi}} million above</b>.</p>
+    <div class="tiles">
+      <div class="tile">
+        <p class="label"><span class="sw d"></span>Democratic nominees vs. expected</p>
+        <p class="big num">{{d_range_pm}}</p>
+        <p class="sub">million votes, across the {{n26}} races. Above expected in all {{n26}}.</p>
+      </div>
+      <div class="tile">
+        <p class="label"><span class="sw r"></span>Republican nominees vs. expected</p>
+        <p class="big num">{{r_range_pm}}</p>
+        <p class="sub">million votes, across the {{n26}} races. Above expected in {{r_above}}, below in {{r_below}}{{r_even}}.</p>
+      </div>
+      <div class="tile">
+        <p class="label">Adjusted for the president's party</p>
+        <div class="pair">
+          <p class="big num"><span class="sw d"></span>{{di_range_pm}}</p>
+          <p class="big num"><span class="sw r"></span>{{ri_range_pm}}</p>
+        </div>
+        <p class="sub">million votes vs. the expectation that allows for the White House party losing more at midterms.</p>
+      </div>
+      <div class="tile">
+        <p class="label">Midterm vote above the party's last presidential vote</p>
+        <div class="pair">
+          <p class="big num"><span class="sw d"></span>{{d_above_pres}} of {{n_off26}} offices</p>
+          <p class="big num"><span class="sw r"></span>{{r_above_pres}} of {{n_off26}} offices</p>
+        </div>
+        <p class="sub">In 1994–2022 this happened in {{d_above_hist}} of {{n_hist}} office-years for Democrats and {{r_above_hist}} of {{n_hist}} for Republicans.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="figure-1">
+  <div class="wrap">
+    <div class="text">
+      <p class="eyebrow">Figure 1</p>
+      <h2>Each party's vote against the midterm pattern</h2>
+      <p class="lede">From 1994 to 2022, each party's vote for these offices averaged {{hist_avg_lo}}–{{hist_avg_hi}}% below
+        its Texas presidential vote two years earlier. In 2026, Republican nominees were {{r26_lo}}–{{r26_hi}}% below
+        Trump's 2024 total of {{trump24}}. Democratic nominees were {{d26_lo}}–{{d26_hi}}% above Harris's {{harris24}}.</p>
+    </div>
+    <div class="viewer" data-viewer>
+      <div class="bar">
+        <div class="seg" role="tablist" aria-label="Figure 1 views">
+          {{fig1_tabs}}
+        </div>
+        <span class="spacer"></span>
+        <a class="tool" data-dl href="{{fig1_src}}" download>Download full resolution</a>
+      </div>
+      <button class="stage" type="button" aria-label="Open Figure 1 full screen">
+        <img src="{{fig1_src}}" width="{{fig1_w}}" height="{{fig1_h}}" alt="{{fig1_alt}}">
+      </button>
+      <p class="hint">Click the figure to open it full screen, then click again for full resolution. The tabs show each half larger.</p>
+    </div>
+    <div class="two">
+      <div class="col">
+        <h3>Left: 1994–2026, ten offices</h3>
+        <p>Each bar is one party's vote for the office as a % change from its presidential vote two years earlier.
+          Dashed lines are the 1994–2022 averages. The 2026 bars are hatched because the count is unofficial.</p>
+      </div>
+      <div class="col">
+        <h3>Right: the {{n26}} races on the 2026 ballot</h3>
+        <p>Solid bars are actual votes in 2018, 2022 and 2026. Behind each is a lighter shadow bar for the expected vote.
+          Above each pair are the actual votes in millions and the difference from expected.</p>
+      </div>
+    </div>
+    <div class="guide" aria-label="How to read the figures">
+      <div class="key"><svg width="34" height="22" aria-hidden="true"><rect x="2" y="4" width="13" height="18" rx="2" fill="#e34948"/><rect x="18" y="8" width="13" height="14" rx="2" fill="#2a78d6"/></svg><span><b>Solid bars</b>: actual Republican and Democratic votes</span></div>
+      <div class="key"><svg width="34" height="22" aria-hidden="true"><rect x="9" y="2" width="13" height="20" rx="2" fill="#b7d3f6" stroke="#2a78d6" stroke-dasharray="3 2"/><rect x="2" y="7" width="13" height="15" rx="2" fill="#2a78d6"/></svg><span><b>Shadow bars</b>: the vote expected from the pattern</span></div>
+      <div class="key"><svg width="34" height="22" aria-hidden="true"><defs><pattern id="h" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="2" height="4" fill="#2a78d6"/></pattern></defs><rect x="8" y="3" width="16" height="19" fill="#b7d3f6"/><rect x="8" y="3" width="16" height="19" fill="url(#h)" stroke="#2a78d6"/></svg><span><b>Hatched bars</b>: 2026, unofficial count</span></div>
+      <div class="key"><svg width="34" height="22" aria-hidden="true"><line x1="1" y1="11" x2="33" y2="11" stroke="#e34948" stroke-width="1.5" stroke-dasharray="4 3"/></svg><span><b>Dashed lines</b>: 1994–2022 average for each party</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="figure-2">
+  <div class="wrap">
+    <div class="text">
+      <p class="eyebrow">Figure 2</p>
+      <h2>The same comparison, adjusted for the president's party</h2>
+      <p class="lede">At midterms, the party holding the White House usually keeps less of its presidential vote. Across Texas
+        offices from 1994 to 2022, it kept about {{b26_abs}} points less ({{b_lo}} to {{b_hi}}, depending on the year
+        left out). Figure 2 builds that into the expectation. Republicans held the White House in 2018 and 2026, Democrats
+        in 2022.</p>
+      <p>With the adjustment, Democratic nominees in 2026 were {{di_lo}} to {{di_hi}} million votes above expected.
+        Republican nominees ranged from {{ri_lo_abs}} million below to {{ri_hi}} million above.</p>
+    </div>
+    <div class="viewer" data-viewer>
+      <div class="bar">
+        <div class="seg" role="tablist" aria-label="Figure 2 views">
+          {{fig2_tabs}}
+        </div>
+        <span class="spacer"></span>
+        <a class="tool" data-dl href="{{fig2_src}}" download>Download full resolution</a>
+      </div>
+      <button class="stage" type="button" aria-label="Open Figure 2 full screen">
+        <img src="{{fig2_src}}" width="{{fig2_w}}" height="{{fig2_h}}" alt="{{fig2_alt}}" loading="lazy">
+      </button>
+      <p class="hint">Click the figure to open it full screen, then click again for full resolution.</p>
+    </div>
+    <div class="two">
+      <div class="col">
+        <h3>Left: actual and expected change</h3>
+        <p>Solid bars are the actual % change, as in Figure 1. Shadow bars are the change expected for that office and
+          party given who held the White House, estimated without the year shown. The letter under each year is the
+          president's party.</p>
+      </div>
+      <div class="col">
+        <h3>Right: actual vs. adjusted expectation</h3>
+        <p>The same {{n26}} races, with the shadow bars now showing the expected vote adjusted for the president's party.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="numbers">
+  <div class="wrap">
+    <div class="text">
+      <p class="eyebrow">Every race</p>
+      <h2>The numbers behind the shadow bars</h2>
+      <p>Actual and expected votes in millions for each race, by year and expectation. The bars show actual minus expected, on
+        one scale across all views.</p>
+    </div>
+    <div class="controls">
+      <div><span class="lab">Year</span><span class="seg" data-ctl="year">{{year_btns}}</span></div>
+      <div><span class="lab">Expectation</span><span class="seg" data-ctl="exp">
+        <button type="button" data-v="plain" aria-pressed="true">Plain</button><button type="button" data-v="inc" aria-pressed="false">President's party</button></span></div>
+    </div>
+    <div class="tablecard">
+{{tables}}
+    </div>
+    <p class="tnote">{{table_note}}</p>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap"><div class="text">
+    <p class="eyebrow">Method</p>
+    <h2>How the expected vote is computed</h2>
+    <ol class="steps">
+      <li><b>Ratio.</b> For each office and party, take the party's midterm vote for the office and divide it by the party's
+        Texas presidential vote two years earlier.
+        <div class="formula">ratio <span class="op">=</span> midterm vote for the office <span class="op">÷</span> presidential vote two years earlier</div></li>
+      <li><b>Pattern.</b> Average that ratio over the 1994–2022 midterms, leaving out the year being estimated, so 2018 and
+        2022 are never compared with averages that already contain them.</li>
+      <li><b>Expected vote.</b>
+        <div class="formula">expected vote <span class="op">=</span> presidential vote two years earlier <span class="op">×</span> average ratio for the office</div></li>
+      <li><b>President's-party version.</b> The ratio gets a baseline for each office and party, plus one adjustment, shared
+        by all of them, for the party that holds the White House. Both are estimated without the year being estimated.
+        <div class="formula">expected vote <span class="op">=</span> presidential vote <span class="op">×</span> (baseline <span class="op">+</span> {{b26}} points if the party holds the White House)</div></li>
+    </ol>
+    <h3>What is counted</h3>
+    <ul class="plain">
+      <li>Only Republican and Democratic nominees, and only races with exactly one of each. Third-party and write-in votes are left out.</li>
+      <li>The Supreme Court and Court of Criminal Appeals have staggered six-year terms, so the same seat was not on the 2018 or
+        2022 ballot. Those years use the average of that court's races with both nominees. The expectation for a court seat
+        is court-wide.</li>
+      <li>The Railroad Commission's seats rotate, so each year is a different seat. Years with several Railroad Commission
+        races use their average.</li>
+      <li>There was no U.S. Senate race in 1998, 2010 or 2022. Comptroller 2010 had no Democratic nominee.</li>
+    </ul>
+    <div class="callout">
+      <p><b>What this measures, and what it does not.</b> The figures show how far each party's vote was from a
+        historical pattern. They do not say why. New and returning voters, voters switching parties, and changes in
+        who is registered can all produce the same totals. Telling them apart takes voter-level and precinct-level
+        data that statewide totals do not contain.</p>
+    </div>
+    <h3>Limitations</h3>
+    <ul class="plain">
+      <li><b>2026 is unofficial.</b> The totals are the Secretary of State's count as of {{asof_long}}, with all 254
+        counties reporting. Late mail ballots, provisional ballots and the state canvass will move them slightly.</li>
+      <li><b>A short history.</b> Each office has at most eight earlier midterms. The president's-party adjustment rests on
+        five midterms under a Democratic president and three under a Republican one.</li>
+      <li><b>A moving baseline.</b> Third-party presidential votes vary. Ross Perot took 22% of the Texas vote in 1992,
+        which lowers both 1994 baselines.</li>
+      <li><b>Straight-ticket voting ended in 2020.</b> House Bill 25 eliminated it effective Sept. 1, 2020
+        (<a href="https://www.sos.state.tx.us/elections/laws/advisory2020-29.shtml">SOS Election Advisory 2020-29</a>), so
+        2022 and 2026 were voted under different rules than 1994–2018.</li>
+      <li><b>Each party against its own baseline.</b> A larger deviation for one party does not translate one for one into
+        the margin.</li>
+    </ul>
+  </div></div>
+</section>
+
+<section id="sources">
+  <div class="wrap"><div class="text">
+    <p class="eyebrow">Sources</p>
+    <h2>Where the numbers come from</h2>
+    <p>Every number on this page comes from the Texas Secretary of State.</p>
+    <ul class="srcs">
+      <li><span class="yr">2026</span><span class="what">Unofficial results, updated {{asof_long}}:
+        <a href="https://goelect.txelections.civixapps.com/ivis-enr-ui/races">2026 general election results</a>
+        <code>goelect.txelections.civixapps.com/api-ivis-system/api/s3/enr/election/53815</code></span></li>
+      <li><span class="yr">2020–2024</span><span class="what">Final results for 2020 (President), 2022 (statewide offices) and 2024 (President):
+        <a href="https://results.texas-election.com">results.texas-election.com</a>
+        <code>results.texas-election.com/static/data/election/&lt;44144 | 47009 | 49664&gt;/&lt;version&gt;/{StateWide,Federal}.json</code></span></li>
+      <li><span class="yr">1992–2018</span><span class="what">Official canvass, Race Summary Reports for each general election:
+        <a href="https://elections.sos.state.tx.us/index.htm">elections.sos.state.tx.us</a>
+        <code>elections.sos.state.tx.us/elchist&lt;id&gt;_state.htm</code></span></li>
+    </ul>
+  </div></div>
+  <div class="wrap">
+    <aside class="deep" aria-label="Data and code">
+      <div>
+        <h2>Go deeper</h2>
+        <p>The repository has everything behind this page:</p>
+        <ul>
+          <li>all 22 source files as downloaded, with their links and checksums</li>
+          <li>the parsers and analysis code</li>
+          <li>full-resolution figures</li>
+          <li>a script that rebuilds both figures byte for byte</li>
+        </ul>
+      </div>
+      <a class="go" href="https://github.com/kevinnbass/texas-2026-midterm-expected-vote">Data, code and full method on GitHub →
+        <span>github.com/kevinnbass/texas-2026-midterm-expected-vote</span></a>
+    </aside>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">Data: Texas Secretary of State. 2026 results unofficial as of {{asof_long}}. Republican and Democratic nominees only.</div>
+</footer>
+
+<dialog class="lb" id="lightbox" aria-label="Figure, full screen">
+  <div class="scroller"><img alt=""></div>
+  <div class="lbbar">
+    <span class="cap"></span>
+    <button class="tool" type="button" data-act="fit">Fit to screen</button>
+    <button class="tool" type="button" data-act="actual">Full resolution</button>
+    <button class="tool" type="button" data-act="close" autofocus>Close</button>
+  </div>
+</dialog>
+
+<script>
+(function () {
+  var lb = document.getElementById('lightbox'), lbImg = lb.querySelector('img'), lbCap = lb.querySelector('.cap'),
+      scroller = lb.querySelector('.scroller');
+  function setActual(on, fx, fy) {
+    lb.classList.toggle('actual', on);
+    if (on) {
+      requestAnimationFrame(function () {
+        scroller.scrollLeft = Math.max(0, (fx || 0.5) * lbImg.offsetWidth - scroller.clientWidth / 2);
+        scroller.scrollTop = Math.max(0, (fy || 0.5) * lbImg.offsetHeight - scroller.clientHeight / 2);
+      });
+    }
+  }
+  lbImg.addEventListener('click', function (e) {
+    if (lb.classList.contains('actual')) { setActual(false); return; }
+    var r = lbImg.getBoundingClientRect();
+    setActual(true, (e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);
+  });
+  lb.addEventListener('click', function (e) {
+    var a = e.target.getAttribute && e.target.getAttribute('data-act');
+    if (a === 'close') lb.close();
+    else if (a === 'fit') setActual(false);
+    else if (a === 'actual') setActual(true);
+    else if (e.target === scroller && !lb.classList.contains('actual')) lb.close();
+  });
+
+  document.querySelectorAll('[data-viewer]').forEach(function (v) {
+    var img = v.querySelector('.stage img'), dl = v.querySelector('[data-dl]'),
+        tabs = Array.prototype.slice.call(v.querySelectorAll('[role=tab]'));
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () {
+        tabs.forEach(function (x) { x.setAttribute('aria-selected', x === t ? 'true' : 'false'); x.tabIndex = x === t ? 0 : -1; });
+        img.src = t.dataset.src; img.width = +t.dataset.w; img.height = +t.dataset.h; img.alt = t.dataset.alt;
+        dl.href = t.dataset.src;
+      });
+      t.addEventListener('keydown', function (e) {
+        var k = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (k) { var n = tabs[(i + k + tabs.length) % tabs.length]; n.focus(); n.click(); }
+      });
+    });
+    v.querySelector('.stage').addEventListener('click', function () {
+      var sel = tabs.filter(function (t) { return t.getAttribute('aria-selected') === 'true'; })[0];
+      lbImg.src = img.src; lbImg.alt = img.alt; lbCap.textContent = sel ? sel.dataset.cap : '';
+      lb.classList.remove('actual'); lb.showModal();
+    });
+  });
+
+  var state = { year: '2026', exp: 'plain' };
+  function show() {
+    document.querySelectorAll('table[data-year]').forEach(function (t) {
+      t.hidden = !(t.dataset.year === state.year && t.dataset.exp === state.exp);
+    });
+  }
+  document.querySelectorAll('[data-ctl]').forEach(function (g) {
+    var key = g.dataset.ctl, bs = Array.prototype.slice.call(g.querySelectorAll('button'));
+    bs.forEach(function (b) {
+      b.addEventListener('click', function () {
+        bs.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        state[key] = b.dataset.v; show();
+      });
+    });
+  });
+  show();
+})();
+</script>
+</body>
+</html>
