@@ -1,4 +1,4 @@
-"""Build the standalone web page for the two figures (site/template.html -> <out_dir>/index.html).
+"""Build the standalone web page for the two figures (site/template.html -> <out_dir>/index.html and artifact.html).
 
 Every number on the page is computed here from the derived CSVs, using the same rounding as the figure labels, so the
 page cannot disagree with the figures. The figures are copied next to the page (figures/, figures/panels/).
@@ -206,9 +206,16 @@ def main():
     tpl = open(os.path.join(ROOT, "site", "template.html"), encoding="utf-8").read()
     page = re.sub(r"\{\{(\w+)\}\}", lambda m: V[m.group(1)], tpl)
     assert "{{" not in page
-    open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page)
-    print(os.path.join(out, "index.html"), f"{len(page):,} bytes;", "values:", {k: v for k, v in V.items()
-                                                                               if len(v) < 40})
+    # artifact.html: the page body as claude.ai artifacts take it (the host adds doctype, head and body).
+    open(os.path.join(out, "artifact.html"), "w", encoding="utf-8").write(page)
+    # index.html: the same page as a self-contained document, for opening locally or any other host.
+    head, body = page.split("<!-- page -->", 1)
+    doc = ('<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
+           '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+           + head.strip() + "\n</head>\n<body>" + body.rstrip() + "\n</body>\n</html>\n")
+    open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(doc)
+    print(os.path.join(out, "index.html"), f"{len(doc):,} bytes; artifact.html {len(page):,} bytes;", "values:",
+          {k: v for k, v in V.items() if len(v) < 40})
 
 
 if __name__ == "__main__":

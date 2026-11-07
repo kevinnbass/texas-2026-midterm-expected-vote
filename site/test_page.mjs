@@ -53,8 +53,8 @@ await shot('01_top_1440');
 // figure 1 tabs
 await ev(`document.querySelectorAll('#figure-1 [role=tab]')[2].click()`);
 await sleep(600);
-const st = await ev(`(() => { const v = document.querySelector('#figure-1 [data-viewer]'); return [v.querySelector('.stage img').getAttribute('src'), v.querySelector('[data-dl]').getAttribute('href'), [...v.querySelectorAll('[role=tab]')].map(t => t.getAttribute('aria-selected')).join(',')]; })()`);
-check('tab switches image, download link and selection', st[0].endsWith('panels/texas_statewide_expected_2018_2026.png') && st[1] === st[0] && st[2] === 'false,false,true', JSON.stringify(st));
+const st = await ev(`(() => { const v = document.querySelector('#figure-1 [data-viewer]'); return [v.querySelector('.stage img').getAttribute('src'), [...v.querySelectorAll('[role=tab]')].map(t => t.getAttribute('aria-selected')).join(',')]; })()`);
+check('tab switches image and selection', st[0].endsWith('panels/texas_statewide_expected_2018_2026.png') && st[1] === 'false,false,true', JSON.stringify(st));
 await ev(`document.querySelector('#figure-1').scrollIntoView()`); await sleep(400);
 await shot('02_fig1_right_tab');
 // lightbox
@@ -73,6 +73,12 @@ check('lightbox closes', !(await ev(`document.getElementById('lightbox').open`))
 // whole-figure tab back
 await ev(`document.querySelectorAll('#figure-1 [role=tab]')[0].click()`); await sleep(300);
 check('back to whole figure', (await ev(`document.querySelector('#figure-1 .stage img').getAttribute('src')`)).endsWith('figures/texas_history_and_expected.png'));
+
+// 'View full resolution' opens the viewer already at full size
+await ev(`document.querySelector('#figure-2 [data-full]').click()`); await sleep(900);
+const fr = await ev(`(() => { const i = document.querySelector('#lightbox img'); return [document.getElementById('lightbox').open, document.getElementById('lightbox').classList.contains('actual'), i.offsetWidth, i.naturalWidth]; })()`);
+check('full-resolution button opens the viewer at natural size', fr[0] && fr[1] && fr[2] === fr[3] && fr[3] === 6735, JSON.stringify(fr));
+await ev(`document.querySelector('#lightbox [data-act=close]').click()`); await sleep(300);
 
 // table controls
 await ev(`document.querySelector('[data-ctl=year] [data-v="2018"]').click()`);
@@ -104,6 +110,18 @@ await shot('06_phone_top');
 await ev(`document.querySelector('#figure-1').scrollIntoView()`); await sleep(400);
 await shot('07_phone_fig1');
 
+// dark theme: tokens switch, figures keep their paper background
+await send('Emulation.setDeviceMetricsOverride', { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false });
+await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-color-scheme', value: 'dark' }] });
+await ev(`document.documentElement.style.scrollBehavior='auto'; window.scrollTo(0, 0)`); await sleep(500);
+const dk = await ev(`[getComputedStyle(document.body).backgroundColor, getComputedStyle(document.querySelector('h1')).color, getComputedStyle(document.querySelector('#figure-1 .stage')).backgroundColor]`);
+check('dark theme: dark page, light text, figure paper kept', dk[0] === 'rgb(20, 20, 18)' && dk[1] === 'rgb(241, 240, 235)' && dk[2] === 'rgb(252, 252, 251)', JSON.stringify(dk));
+await shot('08_dark_top');
+await ev(`document.querySelector('#sources').scrollIntoView()`); await sleep(400);
+await shot('09_dark_sources');
+await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-color-scheme', value: 'light' }] });
+const fonts = await ev(`document.fonts.ready.then(() => [...document.fonts].filter(f => f.status === 'loaded').map(f => f.family).filter((v, i, a) => a.indexOf(v) === i))`);
+results.push('INFO web fonts loaded: ' + JSON.stringify(fonts) + ' (none when offline: the fallbacks are used)');
 check('no script errors', errors.length === 0, errors.join(' | '));
 writeFileSync(`${out}/results.txt`, results.join('\n') + '\n');
 console.log(results.join('\n'));
