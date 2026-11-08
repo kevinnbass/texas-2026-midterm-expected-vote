@@ -89,10 +89,10 @@ Read plainly:
   from 0.56M below to 0.07M above.
 - **2026:** with the plain expectation, Republican nominees ranged from 0.64M below expected (U.S. Senate) to 0.14M
   above. Democratic nominees were 1.46M–2.02M above expected. With the president's-party adjustment, Republicans
-  ranged from 0.45M below to 0.44M above, and Democrats were 1.23M–1.82M above.
+  ranged from 0.36M below to 0.58M above, and Democrats were 1.12M–1.75M above.
 
-The president's-party adjustment is −7.5 points of the presidential vote for 2026. Depending on which year is left
-out, it ranges from −6.8 to −8.8.
+The president's-party adjustment is −11.0 points of the presidential vote for 2026, estimated from Texas's offices
+together with the 50-state pool. Depending on which year is left out, it ranges from −9.2 to −12.8.
 
 These figures measure how far each party's vote was from the historical pattern. They do not say why. Turnout among
 new and returning voters, voters switching parties, and changes in who is registered can all produce the same totals.
@@ -108,8 +108,9 @@ The full method is in [METHODOLOGY.md](METHODOLOGY.md).
 - **Plain expectation.** The presidential vote two years earlier × the office's average ratio over the 1994–2022
   midterms, leaving out the year being estimated.
 - **President's-party expectation.** The ratio is modeled as *a*[office, party] + *b* × (party holds the White House).
-  *b* is one slope pooled across offices and parties. Both *a* and *b* are estimated from 1994–2022 without the year
-  being estimated.
+  *b* is one slope pooled across offices and parties, estimated from Texas's offices together with U.S. Senate races in
+  all 50 states, governor races and every statewide office in seven other states (`data/pool/`); *a* is Texas's own.
+  Both are estimated from 1994–2022 without the year being estimated.
 - **Courts.** Supreme Court and Court of Criminal Appeals seats have six-year staggered terms, so the same seat was not
   on the 2018 or 2022 ballot. Those years use the average of that court's races with both nominees, and the
   expectation for a court is court-wide. Railroad Commissioner averages that year's Railroad Commission races.
@@ -185,9 +186,9 @@ python3 src/fetch_sources.py new/   # download every source again into new/ and 
 
 - **2026 is unofficial.** Late mail ballots, provisional ballots and canvass corrections will change the totals
   slightly.
-- **Few data points.** Each office has at most eight earlier midterms. The president's-party slope comes from five
-  midterms under a Democratic president (1994, 1998, 2010, 2014, 2022) and three under a Republican one (2002, 2006,
-  2018).
+- **Few data points.** Each office has at most eight earlier midterms: five under a Democratic president (1994, 1998,
+  2010, 2014, 2022) and three under a Republican one (2002, 2006, 2018). That is why the president's-party slope is
+  estimated from the 50-state pool rather than from Texas alone.
 - **The presidential baseline moves.** Third-party presidential votes vary; Ross Perot took 22% in 1992, which lowers
   both 1994 baselines.
 - **Straight-ticket voting ended in 2020.** House Bill 25 (2017) eliminated it effective Sept. 1, 2020

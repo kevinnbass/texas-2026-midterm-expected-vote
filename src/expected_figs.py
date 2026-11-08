@@ -213,7 +213,8 @@ def fig_history_inc(E, out_png, dpi=170):
                bbox_to_anchor=(0.97, 1 - 0.58 / H), ncol=1, frameon=False, fontsize=11, labelcolor=INK)
     note = ("Expected change = the office's baseline ratio for that party + an adjustment when the party holds the "
             f"White House ({bs[0]:+.1f} to {bs[-1]:+.1f} points of the presidential vote, depending on the year left out), "
-            "estimated from the 1994–2022 midterms without the year shown. Source: Texas Secretary of State (official "
+            "estimated from the 1994–2022 midterms of U.S. Senate races in all 50 states, governor races in every state that elected one, and every statewide office in Texas and seven other states (each Texas office keeps its own baseline), without the "
+            "year shown. Source: Texas Secretary of State (official "
             "results 1992–2024; 2026 unofficial). Republican and Democratic nominees only. Court panels average each "
             "year's races for that court with both nominees; Railroad Commissioner averages that year's RRC races. "
             "Comptroller 2010 had no Democratic nominee. Presidential baselines include 1992 (Perot took 22%) and the "
@@ -298,7 +299,7 @@ def fig_expected(E, races, asof, out_png, inc=False):
         note = ("Expected vote = the party's Texas presidential vote two years earlier × (the office's baseline ratio for "
                 "that party + an adjustment when the party holds the White House). The adjustment is the average "
                 "difference, within each office and party, between midterms when the party held the presidency and "
-                f"when it did not, pooled over the 1994–2022 midterms: {100 * bs[2026]:+.1f} points of the presidential "
+                f"when it did not, pooled over the 1994–2022 midterms of U.S. Senate races in all 50 states, governor races in every state that elected one, and every statewide office in Texas and seven other states: {100 * bs[2026]:+.1f} points of the presidential "
                 f"vote for 2026 ({100 * bs[2018]:+.1f} for 2018 and {100 * bs[2022]:+.1f} for 2022, which leave out their "
                 "own year). President's party: Republicans in 2018 and 2026, Democrats in 2022. " + note[note.find("Court offices"):])
     fig.text(0.5, 0.25 / H, textwrap.fill(note, 230), ha="center", va="bottom", fontsize=9, color=MUTED,

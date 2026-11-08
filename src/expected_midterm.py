@@ -98,7 +98,7 @@ def build():
                 r[f"expected_{p}"] = r[f"pres_{p}"] * avg
                 r[f"dev_{p}"] = r[p] - r[f"expected_{p}"]
             r["n_hist"] = len(base)
-    add_incumbency(rows)
+    add_incumbency(rows, load_pool())
     return rows
 
 
@@ -106,18 +106,36 @@ def build():
 PRES_PARTY = {1994: "D", 1998: "D", 2002: "R", 2006: "R", 2010: "D", 2014: "D", 2018: "R", 2022: "D", 2026: "R"}
 
 
-def add_incumbency(rows):
+POOL = Path(__file__).resolve().parent.parent / "data" / "pool" / "pool_rows_TX.csv"
+
+
+def load_pool():
+    """Office-year ratios from the 50-state pool (data/pool/README.md): U.S. Senate races in all 50 states, governor races,
+    and every statewide office in seven other states. They enter only the slope b, never a Texas office's own baseline."""
+    if not POOL.exists():
+        return []
+    return [{"office": r["office"], "year": int(r["year"]), "ratio_rep": float(r["ratio_rep"]), "ratio_dem": float(r["ratio_dem"])}
+            for r in csv.DictReader(open(POOL))]
+
+
+def add_incumbency(rows, pool=()):
     """Incumbency-adjusted expectation: ratio = a[office, party] + b * (party holds the White House).
-    b is the pooled within-(office, party) slope; a is the office-party mean of (ratio - b * status). Both are
-    estimated from the 1994-2022 midterms, leaving out the target year (2018, 2022) as for the plain expectation."""
+    b is the pooled within-(office, party) slope, estimated from Texas's offices together with the 50-state pool rows;
+    a is the Texas office-party mean of (ratio - b * status). Both are estimated from the 1994-2022 midterms, leaving out
+    the target year (2018, 2022) as for the plain expectation."""
     for target in sorted({r["year"] for r in rows}):
         hist = [r for r in rows if r["year"] <= 2022 and r["year"] != target]
         groups = {}
         for r in hist:
             for p, P in (("rep", "R"), ("dem", "D")):
                 groups.setdefault((r["office"], p), []).append((1 if PRES_PARTY[r["year"]] == P else 0, r[f"ratio_{p}"]))
+        slope_groups = dict(groups)
+        for r in pool:
+            if r["year"] <= 2022 and r["year"] != target:
+                for p, P in (("rep", "R"), ("dem", "D")):
+                    slope_groups.setdefault((r["office"], p), []).append((1 if PRES_PARTY[r["year"]] == P else 0, r[f"ratio_{p}"]))
         num = den = 0.0
-        for xs in groups.values():
+        for xs in slope_groups.values():
             mx = sum(x for x, _ in xs) / len(xs)
             my = sum(v for _, v in xs) / len(xs)
             num += sum((x - mx) * (v - my) for x, v in xs)
