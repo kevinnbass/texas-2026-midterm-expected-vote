@@ -96,7 +96,7 @@ The intercept *a* is separate for each office and party. The slope *b* is shared
 states, governor races in every state that elected one, and every statewide office in seven other states); those rows
 enter only *b*, never a Texas office's *a*. Estimated this way, *b* (in points of the presidential vote) is −11.0 for
 2026. With one year left out it is −10.4 (1994), −10.8 (1998), −12.8 (2002), −9.2 (2006), −10.5 (2010), −11.3 (2014),
-−11.1 (2018) and −11.5 (2022). In words: in a given office, the party holding the White House kept about 11 fewer points
+−11.1 (2018) and −11.6 (2022). In words: in a given office, the party holding the White House kept about 11 fewer points
 of its presidential vote at the midterm than the same party did in midterms when it was out of power. Estimated from
 Texas's offices alone (the first version of these figures; delete `data/pool/` to reproduce it), *b* was −7.5 for 2026.
 
